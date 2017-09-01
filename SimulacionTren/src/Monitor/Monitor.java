@@ -45,7 +45,7 @@ import java.util.List;
     private List<Integer> filtroTransciones(List<Integer> st) { // lo que en el diagrama de secuencia se llama quienesEstan()
         List<Integer>dt = new ArrayList<>();
         for(Integer i : st){
-            if(!transiciones[i.intValue()].empty()){
+            if(!transiciones[i].empty()){
                 dt.add(i);
             }
         }
