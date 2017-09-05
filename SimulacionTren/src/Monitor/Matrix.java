@@ -56,4 +56,46 @@ public class Matrix {
         }
         return C;
     }
+
+    /**
+     * Este mertodo genera una matriz con las mismas dimensiones que A,
+     * donde el valor de la celda sera 1 si el valor de la misma celda en A es igual a cero
+     * de otro modo el valor de la celda es 0
+     * @param A matrix int[][]
+     * @return  matriz de la misma dimension que A
+     */
+    public static int[][] cero(int[][]A){
+        int[][]C =new int[A.length][A[0].length];
+        for(int i=0;i<A.length;i++){
+            for(int k=0;k<A[0].length;k++){
+                if(A[i][k]==0){C[i][k]=1;}
+            }
+        }
+        return C;
+    }
+    public static int[][] uno(int[][]A){
+        int[][]C =new int[A.length][A[0].length];
+        for(int i=0;i<A.length;i++){
+            for(int k=0;k<A[0].length;k++){
+                if(A[i][k]!=0){C[i][k]=1;}
+            }
+        }
+        return C;
+
+    }
+
+    /**
+     * Calcula la matriz Transpuesta
+     * @param A matrix int[][]
+     * @return matrix transpuesta
+     */
+    public static int[][] Transpuesta(int[][]A){
+        int[][]C=new int[A[0].length][A.length];
+        for(int i=0;i<A.length;i++){
+            for(int k=0;k<A[0].length;k++){
+                C[k][i]=A[i][k];
+            }
+        }
+        return C;
+    }
 }

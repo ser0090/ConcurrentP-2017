@@ -15,19 +15,25 @@ import jxl.*;
  */
 public class RdP {
 
-    private int[][] I;
-    private int[][] Ip;
-    private int[][] Im;
-    private int[][] H;
-    private int[][] m;
-    //private int[][] delta;
+    private int[][] I;// matriz de incidencia (PxT)
+    private int[][] Ip; //I+ (PxT)
+    private int[][] Im;//I- (PxT)
+    private int[][] H;//Matriz de arcos innibidores (TxP)
+    private int[][] J;//Matriz auxiliar para calculo de innibiciones(columna)
+    private int[][] m;//matriz de marcado(columna)
+    private int[][] B;//matriz de innibicion (columna)
+
     public RdP() {
         cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\MatricesTesting.xls");
-      /*  this.delta = new int[I[0].length][1];//definicion del vector delta como un vector columna
-        for(int i=0;i<delta[0].length;i++){
-            delta[i][0]=0;
+        J= new int[H.length][1]; //auxiliar de innibicion
+        for(int i=0; i<H.length;i++){
+            for(int j=0;j<H[0].length;j++){
+                if(H[i][j]!=0){
+                    J[i][0]=1;}
+            }
         }
-        */
+
+        B =Matrix.uno(Matrix.matrixProduct(H,Matrix.cero(m)));//calcula columna de innibicion
     }
 
     /**
@@ -36,13 +42,14 @@ public class RdP {
      * @return true si la red se disparo con exito, false si la transicion no pudo dispararse(ej: no estaba sensibilizada)
      */
     public boolean disparar(int transicion) {
-
-        int[][]marcadoSiguiente=calcularDisparo(transicion);
-        if(verificarDisparo(marcadoSiguiente)){
-            m=marcadoSiguiente;
-            return true;
-        }
-
+        try {
+            int[][] marcadoSiguiente = calcularDisparo(transicion);
+            if (verificarDisparo(marcadoSiguiente)) {
+                m = marcadoSiguiente;
+                B =Matrix.uno(Matrix.matrixProduct(H,Matrix.cero(m)));//actualiza la matriz de innibicion
+                return true;
+            }
+        }catch(TransicionInnibidaException e){return false;}
         return false;
     }
 
@@ -51,8 +58,13 @@ public class RdP {
      * @param transicion a disparar
      * @return vector(matriz) de marcado calculado
      */
-    private int[][] calcularDisparo(int transicion){
+    private int[][] calcularDisparo(int transicion) throws TransicionInnibidaException {
         if(transicion>=I[0].length){throw new IllegalArgumentException("no esxite la transicion en esta RdP");}
+
+        ///////////////inclusion de los arcos innibidores///////////////////
+
+        if((B[transicion][0]!=J[transicion][0])){throw new TransicionInnibidaException();}
+
         int[][]d = new int[I[0].length][1];
 
         d[transicion][0]=1;// conformo el vector delta de disparo(d es un vector auxiliar)
@@ -74,9 +86,11 @@ public class RdP {
     public List<Integer> getSensibilizadas() {
         ArrayList<Integer> sensibilizadas=new ArrayList<>();
         for(int transicion = 0;transicion<I[0].length;transicion++){
-            if(verificarDisparo(calcularDisparo(transicion))){
-                sensibilizadas.add(transicion);
-            }
+            try {
+                if (verificarDisparo(calcularDisparo(transicion))) {
+                    sensibilizadas.add(transicion);
+                }
+            }catch (TransicionInnibidaException e){}
         }
         return sensibilizadas;
     }
@@ -137,6 +151,10 @@ public class RdP {
                     H[j-1][i-1]=Integer.parseInt(pagina.getCell(i,j).getContents());
                 }
             }
+            H=Matrix.Transpuesta(H);
+
+
+
             pagina = libroMatrices.getSheet(4);
             columns = pagina.getColumns();
             row = pagina.getRows();
@@ -180,7 +198,7 @@ public class RdP {
         }
     }
 
-
+    class TransicionInnibidaException extends Exception{}
 }
 
 
