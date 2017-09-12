@@ -7,6 +7,10 @@ import java.util.List;
  */
 public class Politica {
     public int cualDisparar(List<Integer> dt) {
-        return dt.get(0).intValue();
+        if(dt.size()!=0) {
+            int rd = (int) (Math.random()*100);
+            return dt.get(rd % dt.size());
+        }
+        return dt.get(0);
     }
 }

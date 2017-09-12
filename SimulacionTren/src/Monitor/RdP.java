@@ -28,7 +28,7 @@ public class RdP {
     private boolean[] Contadores;//indica si el contador de tiempo esta activo
 
     public RdP() {
-        cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\MatricesTesting.xls");
+        cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\Matrices2.xls");
         J = new int[H.length][1]; //auxiliar de innibicion
         for (int i = 0; i < H.length; i++) {
             for (int j = 0; j < H[0].length; j++) {
@@ -38,7 +38,9 @@ public class RdP {
             }
         }
 
-        B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//calcula columna de innibicion
+        //B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//calcula columna de innibicion
+        B= new int[H.length][1];
+        calcularB();
         T = new Calendar[H.length];
         for (int i = 0; i < T.length; i++) {
             T[i] = new GregorianCalendar();
@@ -61,7 +63,8 @@ public class RdP {
                 int aux = verificarTiempo(transicion);
                 if (aux == 0) {
                     m = marcadoSiguiente;
-                    B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//actualiza la matriz de innibicion
+                    //B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//actualiza la matriz de innibicion
+                    calcularB();
                     Contadores[transicion] = false; // reseteo el timestamp
                     actualizarTimeStamp();
                     return 0;
@@ -87,25 +90,38 @@ public class RdP {
      */
     private int[][] calcularDisparo(int transicion) throws TransicionInnibidaException {
         if (transicion >= I[0].length) {
-            throw new IllegalArgumentException("no esxite la transicion en esta RdP");
+            throw new IllegalArgumentException("no exite la transicion en esta RdP");
         }
 
         ///////////////inclusion de los arcos innibidores///////////////////
-        if ((B[transicion][0] != J[transicion][0])) {
-            throw new TransicionInnibidaException();
-        }
-
+        //if ((B[transicion][0] != J[transicion][0])) {
+        //    throw new TransicionInnibidaException();
+        //}
+        if(B[transicion][0]==0){throw new TransicionInnibidaException();}
 
         int[][] d = new int[I[0].length][1];
 
-        d[transicion][0] = 1;// conformo el vector delta de disparo(d es un vector auxiliar)
+        d[transicion][0] = 1;// conformo el vector delta de disparo(d es un vector auxiliar
 
         int[][] dispar = Matrix.MatrixAdition(m, Matrix.matrixProduct(I, d));
-        ///////////////inclusion de transiciones temporales/////////////////
 
         return dispar;
 
 
+    }
+
+    private void calcularB(){
+        int[][]cero = Matrix.cero(m);
+        int aux=1; // si flag true B [i] =1; transicion habilitada
+        for (int i=0;i<H.length;i++){
+            aux=1;
+            for(int j=0;j<H[0].length;j++){
+                if(H[i][j]==1){
+                    if(cero[j][0]!=1){aux=0;}
+                }
+            }
+            B[i][0]=aux;
+        }
     }
 
     /**
@@ -114,7 +130,7 @@ public class RdP {
      * @return cantidad de transiciones en la RdP
      */
     public int cantidadDeTransiciones() {
-        return 0;
+        return I[0].length;
     }
 
     /**
@@ -125,7 +141,7 @@ public class RdP {
         for (int transicion = 0; transicion < I[0].length; transicion++) {
             try {
                 if (verificarDisparo(calcularDisparo(transicion))) {
-                    if (verificarTiempo(transicion) == 0)
+
                         sensibilizadas.add(transicion);
                 }
             } catch (Exception e) {
@@ -158,11 +174,11 @@ public class RdP {
     /**
      * carga las matrices de la RdP desde un libro de Exel 97-2003 (formato .xls)
      * las matrices deben colocarse en paginas del libro de exel de la siguiente manera:
-     * 1era Hoja)I-
-     * 2da  Hoja)I+
-     * 3ra  Hoja)I (matriz de incidencia)
-     * 4ta  Hoja)H (matriz de innibicion)
-     * 5ta  Hoja)M0 (marcado inicial)
+     *
+     * 1ra  Hoja)I (matriz de incidencia)
+     * 2ta  Hoja)H (matriz de innibicion)
+     * 3ta  Hoja)M0 (marcado inicial)
+     * 4ta hoja)Z (matriz de tiempos)
      *
      * @param path, la ruta Absoluta al archivo de exel (.xls)
      */
@@ -171,31 +187,10 @@ public class RdP {
         Workbook libroMatrices;
         try {
             libroMatrices = Workbook.getWorkbook(archivo);
+
             Sheet pagina = libroMatrices.getSheet(0);
             int columns = pagina.getColumns();
             int row = pagina.getRows();
-            Im = new int[row - 1][columns - 1];
-            //System.out.println("filas:"+Im.length +"  Columnas:"+Im[0].length);
-            for (int i = 1; i < columns; i++) {
-                for (int j = 1; j < row; j++) {
-                    //System.out.println(j +";"+i);
-                    Im[j - 1][i - 1] = Integer.parseInt(pagina.getCell(i, j).getContents());
-                }
-            }
-
-            pagina = libroMatrices.getSheet(1);
-            columns = pagina.getColumns();
-            row = pagina.getRows();
-            Ip = new int[row - 1][columns - 1];
-            for (int i = 1; i < columns; i++) {
-                for (int j = 1; j < row; j++) {
-                    Ip[j - 1][i - 1] = Integer.parseInt(pagina.getCell(i, j).getContents());
-                }
-            }
-
-            pagina = libroMatrices.getSheet(2);
-            columns = pagina.getColumns();
-            row = pagina.getRows();
             I = new int[row - 1][columns - 1];
             for (int i = 1; i < columns; i++) {
                 for (int j = 1; j < row; j++) {
@@ -203,7 +198,7 @@ public class RdP {
                 }
             }
 
-            pagina = libroMatrices.getSheet(3);
+            pagina = libroMatrices.getSheet(1);
             columns = pagina.getColumns();
             row = pagina.getRows();
             H = new int[row - 1][columns - 1];
@@ -215,21 +210,21 @@ public class RdP {
             H = Matrix.Transpuesta(H);
 
 
-            pagina = libroMatrices.getSheet(4);
+            pagina = libroMatrices.getSheet(2);
             columns = pagina.getColumns();
             row = pagina.getRows();
-            m = new int[row - 1][1];
-            for (int j = 1; j < row; j++) {
-                m[j - 1][0] = Integer.parseInt(pagina.getCell(1, j).getContents());
+            m = new int[columns - 1][1];
+            for (int j = 1; j < columns; j++) {
+                m[j - 1][0] = Integer.parseInt(pagina.getCell(j, 1).getContents());
             }
 
-            pagina = libroMatrices.getSheet(5);
+            pagina = libroMatrices.getSheet(3);
             columns = pagina.getColumns();
             row = pagina.getRows();
-            Z = new int[row - 1][columns - 1];
+            Z = new int[columns - 1][row - 1];
             for (int i = 1; i < columns; i++) {
                 for (int j = 1; j < row; j++) {
-                    Z[j - 1][i - 1] = Integer.parseInt(pagina.getCell(i, j).getContents());
+                    Z[i - 1][j - 1] = Integer.parseInt(pagina.getCell(i, j).getContents());
                 }
             }
 
@@ -266,6 +261,7 @@ public class RdP {
     }
 
     public void printM() {
+        System.out.println(Thread.currentThread().getName() +"  Marcado:");
         for (int i = 0; i < m.length; i++) {
             for (int k = 0; k < m[0].length; k++) {
                 System.out.printf("%d", m[i][k]);
@@ -285,12 +281,12 @@ public class RdP {
         Calendar actual = new GregorianCalendar();
 
         int diferenciaEnMilis = (int) (actual.getTimeInMillis() - T[transicion].getTimeInMillis());
-        if (diferenciaEnMilis < (Z[transicion][0] * 1000)) {
+        if (diferenciaEnMilis < (Z[transicion][0] * 100)) {
 
             if ((Z[transicion][1] > 0) && (diferenciaEnMilis>Z[transicion][1])) {
                 throw new TransicionFueraDeTiempoException();
             }
-            else {return (Z[transicion][0] * 1000) - diferenciaEnMilis;}
+            else {return (Z[transicion][0] * 100) - diferenciaEnMilis;}
         }
             return 0;
         }

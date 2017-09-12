@@ -73,6 +73,13 @@ public class Matrix {
         }
         return C;
     }
+
+    /**
+     * Este metodo genera una matriz(C) de igual dimension a la especificada donde el valor de (Cij=1) si (Aij != 0)
+     * de otra manera la celda vale cero
+     * @param A, matriz a analizar
+     * @return
+     */
     public static int[][] uno(int[][]A){
         int[][]C =new int[A.length][A[0].length];
         for(int i=0;i<A.length;i++){
