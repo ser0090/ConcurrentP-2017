@@ -20,8 +20,9 @@ public class Barrera implements Runnable {
     }
     @Override
     public void run() {
-        monitor.dispararTransicion(BAJAR_BARRERA);
-        monitor.dispararTransicion(SUBIR_BARRERA);
-
+        while(true) {
+            monitor.dispararTransicion(BAJAR_BARRERA);
+            monitor.dispararTransicion(SUBIR_BARRERA);
+        }
     }
 }

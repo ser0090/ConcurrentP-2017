@@ -30,7 +30,7 @@ public class Transicion{
     }
 
     public synchronized void resume(){
-        notifyAll();
+        notify();
     }
 
 

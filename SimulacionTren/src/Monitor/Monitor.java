@@ -35,7 +35,7 @@ import java.util.concurrent.Semaphore;
         while (true) {
             try {
                 semaphore.acquire();
-            }catch (InterruptedException e){dispararTransicion(transicion);return;}
+            }catch (InterruptedException e){/*dispararTransicion(transicion);*/return;}
 
             int resultado = rdp.disparar(transicion);
             if (resultado == 0) {//si se pudo disparar verifica el estado de la red

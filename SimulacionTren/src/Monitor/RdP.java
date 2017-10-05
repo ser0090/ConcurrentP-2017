@@ -17,10 +17,7 @@ import jxl.*;
 public class RdP {
 
     private int[][] I;// matriz de incidencia (PxT)
-    private int[][] Ip; //I+ (PxT)
-    private int[][] Im;//I- (PxT)
-    private int[][] H;//Matriz de arcos innibidores (TxP)
-    private int[][] J;//Matriz auxiliar para calculo de innibiciones(columna)
+    private int[][] H;//Matriz de arcos innibidores (TxP). Esta matriz se almacena en forma complementada para facilitar el calculo de B
     private int[][] m;//matriz de marcado(columna)
     private int[][] B;//matriz de innibicion (columna)
     private int[][] Z;//Matriz de intervalos
@@ -29,16 +26,7 @@ public class RdP {
 
     public RdP() {
         cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\Matrices2.xls");
-        J = new int[H.length][1]; //auxiliar de innibicion
-        for (int i = 0; i < H.length; i++) {
-            for (int j = 0; j < H[0].length; j++) {
-                if (H[i][j] != 0) {
-                    J[i][0] = 1;
-                }
-            }
-        }
 
-        //B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//calcula columna de innibicion
         B= new int[H.length][1];
         calcularB();
         T = new Calendar[H.length];
@@ -57,13 +45,13 @@ public class RdP {
      * si la transicion no se puede disparar porque le falta para el intervalo de tiempo retornara el tiempo que le falta en milisegundos.
      */
     public int disparar(int transicion) {
-        try {
+
             int[][] marcadoSiguiente = calcularDisparo(transicion);
             if (verificarDisparo(marcadoSiguiente)) {
                 int aux = verificarTiempo(transicion);
                 if (aux == 0) {
                     m = marcadoSiguiente;
-                    //B = Matrix.uno(Matrix.matrixProduct(H, Matrix.cero(m)));//actualiza la matriz de innibicion
+
                     calcularB();
                     Contadores[transicion] = false; // reseteo el timestamp
                     actualizarTimeStamp();
@@ -72,11 +60,7 @@ public class RdP {
                     return aux;
                 }
             }
-        } catch (TransicionInnibidaException e) {
-            return -1;
-        } catch (TransicionFueraDeTiempoException e) {
-            return -1;
-        }
+
 
         return -1;
     }
@@ -88,16 +72,13 @@ public class RdP {
      * @param transicion a disparar
      * @return vector(matriz) de marcado calculado
      */
-    private int[][] calcularDisparo(int transicion) throws TransicionInnibidaException {
+    private int[][] calcularDisparo(int transicion) {
         if (transicion >= I[0].length) {
             throw new IllegalArgumentException("no exite la transicion en esta RdP");
         }
 
         ///////////////inclusion de los arcos innibidores///////////////////
-        //if ((B[transicion][0] != J[transicion][0])) {
-        //    throw new TransicionInnibidaException();
-        //}
-        if(B[transicion][0]==0){throw new TransicionInnibidaException();}
+        if(B[transicion][0]==0){return null;}
 
         int[][] d = new int[I[0].length][1];
 
@@ -112,15 +93,12 @@ public class RdP {
 
     private void calcularB(){
         int[][]cero = Matrix.cero(m);
-        int aux=1; // si flag true B [i] =1; transicion habilitada
+
         for (int i=0;i<H.length;i++){
-            aux=1;
+            B[i][0]=1;
             for(int j=0;j<H[0].length;j++){
-                if(H[i][j]==1){
-                    if(cero[j][0]!=1){aux=0;}
-                }
+               B[i][0] &= H[i][j] | cero[j][0];
             }
-            B[i][0]=aux;
         }
     }
 
@@ -208,6 +186,7 @@ public class RdP {
                 }
             }
             H = Matrix.Transpuesta(H);
+            H= Matrix.cero(H); // complemento de la matriz H
 
 
             pagina = libroMatrices.getSheet(2);
@@ -241,6 +220,7 @@ public class RdP {
      * @return true si no existen valores negativos(disparo exitoso)
      */
     private boolean verificarDisparo(int[][] marcado) {
+        if (marcado==null){return false;}
         for (int i = 0; i < marcado.length; i++) {
             for (int k = 0; k < marcado[0].length; k++) {
                 if (marcado[i][k] < 0) {
@@ -276,7 +256,7 @@ public class RdP {
      * @return 0 si la transicion esta en la ventana de tiempo. si falta para que la transicion se pueda disparar retorna el tiempo que falta en ms
      * @throws TransicionFueraDeTiempoException, si la transicion ya esta fuera de la ventana de tiempo, >beta
      */
-    public int verificarTiempo(int transicion) throws TransicionFueraDeTiempoException {
+    public int verificarTiempo(int transicion){
 
         Calendar actual = new GregorianCalendar();
 
@@ -284,15 +264,14 @@ public class RdP {
         if (diferenciaEnMilis < (Z[transicion][0] * 100)) {
 
             if ((Z[transicion][1] > 0) && (diferenciaEnMilis>Z[transicion][1])) {
-                throw new TransicionFueraDeTiempoException();
+               return -1;
             }
             else {return (Z[transicion][0] * 100) - diferenciaEnMilis;}
         }
             return 0;
         }
 
-        class TransicionNoSensibilizadaExeption extends Exception {
-        }
+
         class TransicionInnibidaException extends Exception {
         }
         class TransicionFueraDeTiempoException extends Exception {
