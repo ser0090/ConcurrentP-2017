@@ -16,12 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        /*RdP rdp=new RdP();
-        rdp.printM();
-        System.exit(0);
-        */
         Monitor monitor = Monitor.getInstance();
 
+/*
         Thread tren = new Thread(new Tren(monitor));
         Thread maquina = new Thread(new Maquina(monitor));
         Thread vagon = new Thread(new Vagon(monitor));
@@ -81,6 +78,6 @@ public class Main {
         bajarVagonA.start();
         bajarVagonB.start();
         bajarVagonC.start();
-        bajarVagonD.start();
+        bajarVagonD.start();*/
     }
 }

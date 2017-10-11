@@ -25,7 +25,7 @@ public class RdP {
     private boolean[] Contadores;//indica si el contador de tiempo esta activo
 
     public RdP() {
-        cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\Matrices2.xls");
+       /* cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\ProductorConsumidorTEST");
 
         B= new int[H.length][1];
         calcularB();
@@ -35,6 +35,7 @@ public class RdP {
         }
 
         Contadores = new boolean[T.length];
+        */
     }
 
     /**
@@ -55,6 +56,7 @@ public class RdP {
                     calcularB();
                     Contadores[transicion] = false; // reseteo el timestamp
                     actualizarTimeStamp();
+
                     return 0;
                 } else {
                     return aux;
@@ -240,14 +242,9 @@ public class RdP {
         }
     }
 
-    public void printM() {
-        System.out.println(Thread.currentThread().getName() +"  Marcado:");
-        for (int i = 0; i < m.length; i++) {
-            for (int k = 0; k < m[0].length; k++) {
-                System.out.printf("%d", m[i][k]);
-            }
-            System.out.printf("\n");
-        }
+    public int[][] getM() {
+
+       return m;
     }
 
     /**
@@ -271,9 +268,22 @@ public class RdP {
             return 0;
         }
 
+    /**
+     * Carga la red, las matrices en el archivo exel.
+     * @param path, ruta del archivo .xls
+     */
+    public void setRdp(String path) {
+        cargarMatrices(path);
 
-        class TransicionInnibidaException extends Exception {
+        B= new int[H.length][1];
+        calcularB();
+        T = new Calendar[H.length];
+        for (int i = 0; i < T.length; i++) {
+            T[i] = new GregorianCalendar();
         }
-        class TransicionFueraDeTiempoException extends Exception {
-        }
+
+        Contadores = new boolean[T.length];
+    }
+
+
     }

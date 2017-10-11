@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
  */
 
  public class Monitor { // clase SINGLETON
-    public RdP rdp;
+    private RdP rdp;
     private Politica politica;
     private Transicion transiciones[];
     private static final Monitor instance = new Monitor();
@@ -17,12 +17,8 @@ import java.util.concurrent.Semaphore;
 
     private Monitor(){
         rdp = new RdP();
+
         politica = new Politica();
-        int ct = rdp.cantidadDeTransiciones();//inicio el vector de variables condicion
-        transiciones= new Transicion[ct];
-        for(int i=0;i<ct;i++){ //inicializo las variables condicion
-            transiciones[i]=new Transicion();
-        }
         semaphore = new Semaphore(1,true);
     }
     public static Monitor getInstance(){return instance;}
@@ -97,5 +93,28 @@ import java.util.concurrent.Semaphore;
             }
         }
         return dt;
+    }
+
+    /**
+     * Debe ser invocada antes de cualquier uso del monitor.
+     * Confifura la Red dePetri sobre la cual se trabajara.
+     * @param path ruta al archivo .xls
+     */
+    public void setRdP(String path){
+        rdp.setRdp(path);
+        int ct = rdp.cantidadDeTransiciones();//inicio el vector de variables condicion
+        transiciones= new Transicion[ct];
+        for(int i=0;i<ct;i++){ //inicializo las variables condicion
+            transiciones[i]=new Transicion();
+        }
+    }
+
+    public int[][] getM(){
+        try {
+            semaphore.acquire();
+        }catch(Exception e){e.printStackTrace();}
+        int[][] m= rdp.getM().clone();
+        semaphore.release();
+        return m;
     }
 }
