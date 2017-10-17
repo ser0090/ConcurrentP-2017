@@ -258,12 +258,12 @@ public class RdP {
         Calendar actual = new GregorianCalendar();
 
         int diferenciaEnMilis = (int) (actual.getTimeInMillis() - T[transicion].getTimeInMillis());
-        if (diferenciaEnMilis < (Z[transicion][0] * 100)) {
+        if (diferenciaEnMilis < (Z[transicion][0] * 1000)) {
 
             if ((Z[transicion][1] > 0) && (diferenciaEnMilis>Z[transicion][1])) {
                return -1;
             }
-            else {return (Z[transicion][0] * 100) - diferenciaEnMilis;}
+            else {return (Z[transicion][0] * 1000) - diferenciaEnMilis;}
         }
             return 0;
         }

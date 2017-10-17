@@ -17,8 +17,9 @@ public class Main {
 
 
         Monitor monitor = Monitor.getInstance();
+        monitor.setRdP("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\Matrices2.xls");
 
-/*
+
         Thread tren = new Thread(new Tren(monitor));
         Thread maquina = new Thread(new Maquina(monitor));
         Thread vagon = new Thread(new Vagon(monitor));
@@ -31,7 +32,7 @@ public class Main {
         Thread barreraAB = new Thread(new Barrera(5, 4, monitor));
         Thread barreraCD = new Thread(new Barrera(18, 17, monitor));
 
-        //subir-bajar gente en estacion A
+       /* //subir-bajar gente en estacion A
         Thread subirMaquinaA= new Thread(new MoverGente(24,monitor));
         Thread subirVagonA = new Thread(new MoverGente(25,monitor));
         Thread bajarMaquinaA = new Thread(new MoverGente(27,monitor));
@@ -51,6 +52,7 @@ public class Main {
         Thread subirVagonD = new Thread(new MoverGente(40,monitor));
         Thread bajarMaquinaD = new Thread(new MoverGente(39,monitor));
         Thread bajarVagonD = new Thread(new MoverGente(38,monitor));
+        */
 
 
         tren.start();
@@ -63,7 +65,7 @@ public class Main {
         barreraAB.start();
         barreraCD.start();
 
-        subirMaquinaA.start();
+       /* subirMaquinaA.start();
         subirMaquinaB.start();
         subirMaquinaC.start();
         subirMaquinaD.start();

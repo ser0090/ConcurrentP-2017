@@ -20,6 +20,7 @@ public class MoverGente implements Runnable{
         while(true){
             monitor.dispararTransicion(TRANSICION);
             System.out.println("token movido" + TRANSICION);
+            if(Thread.interrupted()){return;}
         }
     }
 }

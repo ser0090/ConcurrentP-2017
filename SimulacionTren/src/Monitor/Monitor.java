@@ -31,13 +31,13 @@ import java.util.concurrent.Semaphore;
         while (true) {
             try {
                 semaphore.acquire();
-            }catch (InterruptedException e){/*dispararTransicion(transicion);*/return;}
+            }catch (InterruptedException e){return;}
 
             int resultado = rdp.disparar(transicion);
             if (resultado == 0) {//si se pudo disparar verifica el estado de la red
                 List<Integer> st=rdp.getSensibilizadas(); //obtengo las transiciones sensibilizadas
                 try {
-                    List<Integer> dt= filtroTransciones(st); //filtro las tranciciones q tienen hilos en espera
+                    List<Integer> dt= filtroTransciones(st); //filtro las tranciciones q tienen hilos en cola
                     int transicionADespertar=politica.cualDisparar(dt);//la politica decide cual variable condicion liberar
                     transiciones[transicionADespertar].resume();
                 }catch(IndexOutOfBoundsException e){}
@@ -62,7 +62,7 @@ import java.util.concurrent.Semaphore;
     public  boolean intentarDispararTransicion(int transicion){
         try {
             semaphore.acquire();
-        }catch (InterruptedException e){return intentarDispararTransicion(transicion);}
+        }catch (InterruptedException e){return false;}
 
             int resultado = rdp.disparar(transicion);
             if (resultado == 0) {//si se pudo disparar verifica el estado de la red
