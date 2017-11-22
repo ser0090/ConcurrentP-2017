@@ -2,11 +2,8 @@ package Monitor;
 
 import java.io.File;
 
-import java.sql.Connection;
-import java.sql.Timestamp;
 import java.util.*;
 
-import Monitor.Matrix;
 import jxl.*;
 
 
@@ -22,20 +19,26 @@ public class RdP {
     private int[][] B;//matriz de innibicion (columna)
     private int[][] Z;//Matriz de intervalos
     private Calendar[] T;//vector que contiene los tiempos en q se sensibilizo la transicion
-    private boolean[] Contadores;//indica si el contador de tiempo esta activo
+    private boolean[] contadores;//indica si el contador de tiempo esta activo
+    private int [][] pInvariantes;
 
-    public RdP() {
-       /* cargarMatrices("C:\\Users\\Tincho\\Documents\\GitHub\\ConcurrentP-2017\\ProductorConsumidorTEST");
+    public RdP(String path) {
+        cargarMatrices(path);
 
         B= new int[H.length][1];
         calcularB();
+        crearT();
+        contadores = new boolean[T.length];
+    }
+
+    /**
+     * inicializa el vector de timestamp T
+     */
+    private void crearT(){
         T = new Calendar[H.length];
         for (int i = 0; i < T.length; i++) {
-            T[i] = new GregorianCalendar();
+            T[i] = Calendar.getInstance();
         }
-
-        Contadores = new boolean[T.length];
-        */
     }
 
     /**
@@ -54,9 +57,9 @@ public class RdP {
                     m = marcadoSiguiente;
 
                     calcularB();
-                    Contadores[transicion] = false; // reseteo el timestamp
+                    contadores[transicion] = false; // reseteo el timestamp
                     actualizarTimeStamp();
-
+                    verificarInvariantes();
                     return 0;
                 } else {
                     return aux;
@@ -86,9 +89,9 @@ public class RdP {
 
         d[transicion][0] = 1;// conformo el vector delta de disparo(d es un vector auxiliar
 
-        int[][] dispar = Matrix.MatrixAdition(m, Matrix.matrixProduct(I, d));
+        return Matrix.MatrixAdition(m, Matrix.matrixProduct(I, d));
 
-        return dispar;
+
 
 
     }
@@ -132,22 +135,17 @@ public class RdP {
     }
 
     private void actualizarTimeStamp() {
-        List<Integer> sens = getSensibilizadas();
-        boolean flag = false;
-        for (int i = 0; i < T.length; i++) {
-            flag = false;
-            for (Integer j : sens) {
-                if (i == j) {
-                    if (Contadores[i] == false) {
-                        T[i] = new GregorianCalendar();
-                        Contadores[i] = true;
-                    }
-                    flag = true;
+        List<Integer> sensibilizadas = getSensibilizadas();
+
+        for (int i = 0; i < T.length; i++) { // recorre todas las transiciones actualizando su timestamp
+                if (sensibilizadas.contains(i) &&
+                        !contadores[i]) { // si esta sensibilizada, debo actualizar su timeStamp solo si no lo estaba antes
+                        T[i] = Calendar.getInstance();
+                        contadores[i] = true;
+
+                }else{
+                     contadores[i] = false;
                 }
-            }
-            if (!flag) {
-                Contadores[i] = false;
-            }
         }
     }
 
@@ -193,7 +191,6 @@ public class RdP {
 
             pagina = libroMatrices.getSheet(2);
             columns = pagina.getColumns();
-            row = pagina.getRows();
             m = new int[columns - 1][1];
             for (int j = 1; j < columns; j++) {
                 m[j - 1][0] = Integer.parseInt(pagina.getCell(j, 1).getContents());
@@ -209,10 +206,33 @@ public class RdP {
                 }
             }
 
+            pagina = libroMatrices.getSheet(4);//carga los P-invariantes
+            columns = pagina.getColumns();
+            row = pagina.getRows();
+            pInvariantes = new int[row-1][columns];
+            for (int i = 1; i < row; i++) {
+                for (int j = 1; j < columns; j++) {
+                    pInvariantes[i - 1][j - 1] = Integer.parseInt(pagina.getCell(j,i).getContents());
+                    if(pInvariantes[i - 1][j - 1]!=0){
+                        pInvariantes[i-1][columns-1]+=m[j-1][0];}//suma los tokens para obtener el invariante
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void verificarInvariantes(){
+        int valor;
+        for(int i = 0; i< pInvariantes.length; i++){
+            valor=0;
+            for(int j = 0; j< pInvariantes[0].length-1; j++){
+                valor+=m[j][0]* pInvariantes[i][j];
+            }
+            assert(valor== pInvariantes[i][pInvariantes[i].length-1]);
+        }
     }
 
     /**
@@ -251,9 +271,9 @@ public class RdP {
      * analiza la temporizacion de las transiciones indicando si la transicion esta en la ventana de disparo
      * @param transicion, transicion a analizar
      * @return 0 si la transicion esta en la ventana de tiempo. si falta para que la transicion se pueda disparar retorna el tiempo que falta en ms
-     * @throws TransicionFueraDeTiempoException, si la transicion ya esta fuera de la ventana de tiempo, >beta
+     *
      */
-    public int verificarTiempo(int transicion){
+    private int verificarTiempo(int transicion){
 
         Calendar actual = new GregorianCalendar();
 
@@ -272,18 +292,5 @@ public class RdP {
      * Carga la red, las matrices en el archivo exel.
      * @param path, ruta del archivo .xls
      */
-    public void setRdp(String path) {
-        cargarMatrices(path);
-
-        B= new int[H.length][1];
-        calcularB();
-        T = new Calendar[H.length];
-        for (int i = 0; i < T.length; i++) {
-            T[i] = new GregorianCalendar();
-        }
-
-        Contadores = new boolean[T.length];
-    }
-
 
     }

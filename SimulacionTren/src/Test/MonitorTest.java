@@ -37,11 +37,7 @@ public class MonitorTest {
         productor.start();
         consumidor.start();
         while(productor.getState()!= Thread.State.TERMINATED && consumidor.getState()!= Thread.State.TERMINATED) {
-            int[][] m = monitor.getM();///asserciones de invariantes
-            assert ((m[0][0] + m[3][0] + m[4][0]) == 1);
-            assert ((m[1][0] + m[2][0]) == 3);
-            assert ((m[3][0] + m[7][0]) == 1);
-            assert ((m[4][0] + m[6][0]) == 1);
+
         }
         productor.join();
         consumidor.join();
@@ -55,11 +51,7 @@ public class MonitorTest {
         productor.start();
         consumidor.start();
         while(productor.getState()!= Thread.State.TERMINATED && consumidor.getState()!= Thread.State.TERMINATED) {
-            int[][] m = monitor.getM();///asserciones de invariantes
-            assert ((m[0][0] + m[3][0] + m[4][0]) == 1);
-            assert ((m[1][0] + m[2][0]) == 3);
-            assert ((m[3][0] + m[7][0]) == 1);
-            assert ((m[4][0] + m[6][0]) == 1);
+
         }
         productor.join();
         consumidor.join();

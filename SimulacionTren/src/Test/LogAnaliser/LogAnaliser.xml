@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
+<net id="Net-One" type="P/T net">
+<token id="Default" enabled="true" red="0" green="0" blue="0"/>
+<place id="Contador de vueltas">
+<graphics>
+<position x="1282.0" y="91.0"/>
+</graphics>
+<name>
+<value>Contador de vueltas</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Tren en A">
+<graphics>
+<position x="187.5" y="225.45454545454547"/>
+</graphics>
+<name>
+<value>Tren en A</value>
+<graphics>
+<offset x="47.0" y="-8.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Tren en B">
+<graphics>
+<position x="492.0" y="222.93181818181813"/>
+</graphics>
+<name>
+<value>Tren en B</value>
+<graphics>
+<offset x="39.0" y="-3.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Tren en C">
+<graphics>
+<position x="819.75" y="226.0"/>
+</graphics>
+<name>
+<value>Tren en C</value>
+<graphics>
+<offset x="37.0" y="-7.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Tren en D">
+<graphics>
+<position x="1145.75" y="226.5"/>
+</graphics>
+<name>
+<value>Tren en D</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Viaje AB">
+<graphics>
+<position x="333.75" y="225.15909090909088"/>
+</graphics>
+<name>
+<value>Viaje AB</value>
+<graphics>
+<offset x="43.0" y="-6.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Viaje BC">
+<graphics>
+<position x="664.25" y="224.81818181818187"/>
+</graphics>
+<name>
+<value>Viaje BC</value>
+<graphics>
+<offset x="32.0" y="-6.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Viaje CD">
+<graphics>
+<position x="971.5" y="229.25"/>
+</graphics>
+<name>
+<value>Viaje CD</value>
+<graphics>
+<offset x="36.0" y="-8.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Viaje DA">
+<graphics>
+<position x="1328.75" y="229.75"/>
+</graphics>
+<name>
+<value>Viaje DA</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,1</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<transition id="Generador">
+<graphics>
+<position x="675.0" y="517.0"/>
+</graphics>
+<name>
+<value>Generador</value>
+<graphics>
+<offset x="44.0" y="33.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T0-SalidaA">
+<graphics>
+<position x="255.0" y="225.0"/>
+</graphics>
+<name>
+<value>T0-SalidaA</value>
+<graphics>
+<offset x="56.0" y="-9.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T10-moverGenteC">
+<graphics>
+<position x="799.0" y="405.0"/>
+</graphics>
+<name>
+<value>T10-moverGenteC</value>
+<graphics>
+<offset x="60.0" y="41.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T11-moverGenteD">
+<graphics>
+<position x="1091.0" y="403.0"/>
+</graphics>
+<name>
+<value>T11-moverGenteD</value>
+<graphics>
+<offset x="61.0" y="39.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T12-sentarPasajeroVagon">
+<graphics>
+<position x="399.0" y="420.0"/>
+</graphics>
+<name>
+<value>T12-sentarPasajeroVagon</value>
+<graphics>
+<offset x="76.0" y="28.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T13-sentarPasajeroMaquina">
+<graphics>
+<position x="950.0" y="426.0"/>
+</graphics>
+<name>
+<value>T13-sentarPasajeroMaquina</value>
+<graphics>
+<offset x="87.0" y="31.0"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T1-arriboB">
+<graphics>
+<position x="404.0" y="226.0"/>
+</graphics>
+<name>
+<value>T1-arriboB</value>
+<graphics>
+<offset x="45.0" y="-11.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T2-salidaB">
+<graphics>
+<position x="586.0" y="225.0"/>
+</graphics>
+<name>
+<value>T2-salidaB</value>
+<graphics>
+<offset x="33.0" y="-11.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T3-arriboC">
+<graphics>
+<position x="749.0" y="225.0"/>
+</graphics>
+<name>
+<value>T3-arriboC</value>
+<graphics>
+<offset x="41.0" y="-9.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T4-salidaC">
+<graphics>
+<position x="897.0" y="226.0"/>
+</graphics>
+<name>
+<value>T4-salidaC</value>
+<graphics>
+<offset x="35.0" y="-10.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T5-arriboD">
+<graphics>
+<position x="1053.0" y="226.0"/>
+</graphics>
+<name>
+<value>T5-arriboD</value>
+<graphics>
+<offset x="35.0" y="-7.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T6-salidaD">
+<graphics>
+<position x="1237.0" y="226.0"/>
+</graphics>
+<name>
+<value>T6-salidaD</value>
+<graphics>
+<offset x="14.0" y="-10.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T7-arriboA">
+<graphics>
+<position x="105.0" y="225.0"/>
+</graphics>
+<name>
+<value>T7-arriboA</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T8-moverGenteA">
+<graphics>
+<position x="259.25" y="397.75"/>
+</graphics>
+<name>
+<value>T8-moverGenteA</value>
+<graphics>
+<offset x="61.0" y="35.5"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T9-moverGenteB">
+<graphics>
+<position x="549.0" y="404.0"/>
+</graphics>
+<name>
+<value>T9-moverGenteB</value>
+<graphics>
+<offset x="64.0" y="41.5"/>
+</graphics>
+</name>
+<orientation>
+<value>90</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<arc id="T0-SalidaA to Viaje AB" source="T0-SalidaA" target="Viaje AB">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="271" y="237" curvePoint="false"/>
+<arcpath id="001" x="330" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T1-arriboB to Tren en B" source="T1-arriboB" target="Tren en B">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="420" y="238" curvePoint="false"/>
+<arcpath id="001" x="489" y="235" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T2-salidaB to Viaje BC" source="T2-salidaB" target="Viaje BC">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="602" y="237" curvePoint="false"/>
+<arcpath id="001" x="661" y="236" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T3-arriboC to Tren en C" source="T3-arriboC" target="Tren en C">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="765" y="237" curvePoint="false"/>
+<arcpath id="001" x="816" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T4-salidaC to Viaje CD" source="T4-salidaC" target="Viaje CD">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="913" y="238" curvePoint="false"/>
+<arcpath id="001" x="968" y="240" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T5-arriboD to Tren en D" source="T5-arriboD" target="Tren en D">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1069" y="238" curvePoint="false"/>
+<arcpath id="001" x="1142" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T6-salidaD to Contador de vueltas" source="T6-salidaD" target="Contador de vueltas">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1249" y="223" curvePoint="false"/>
+<arcpath id="001" x="1288" y="117" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T6-salidaD to Viaje DA" source="T6-salidaD" target="Viaje DA">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1253" y="238" curvePoint="false"/>
+<arcpath id="001" x="1325" y="241" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T7-arriboA to Tren en A" source="T7-arriboA" target="Tren en A">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="121" y="237" curvePoint="false"/>
+<arcpath id="001" x="184" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Tren en A to T0-SalidaA" source="Tren en A" target="T0-SalidaA">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="214" y="237" curvePoint="false"/>
+<arcpath id="001" x="261" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Tren en A to T10-moverGenteC" source="Tren en A" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="213" y="241" curvePoint="false"/>
+<arcpath id="001" x="795" y="417" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en A to T11-moverGenteD" source="Tren en A" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="214" y="240" curvePoint="false"/>
+<arcpath id="001" x="1087" y="415" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en A to T12-sentarPasajeroVagon" source="Tren en A" target="T12-sentarPasajeroVagon">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="210" y="247" curvePoint="false"/>
+<arcpath id="001" x="405" y="426" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en A to T13-sentarPasajeroMaquina" source="Tren en A" target="T13-sentarPasajeroMaquina">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="213" y="241" curvePoint="false"/>
+<arcpath id="001" x="946" y="438" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en A to T9-moverGenteB" source="Tren en A" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="212" y="244" curvePoint="false"/>
+<arcpath id="001" x="545" y="416" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en B to T10-moverGenteC" source="Tren en B" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="516" y="242" curvePoint="false"/>
+<arcpath id="001" x="802" y="411" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en B to T11-moverGenteD" source="Tren en B" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="518" y="239" curvePoint="false"/>
+<arcpath id="001" x="1087" y="415" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en B to T12-sentarPasajeroVagon" source="Tren en B" target="T12-sentarPasajeroVagon">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="497" y="248" curvePoint="false"/>
+<arcpath id="001" x="415" y="427" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en B to T13-sentarPasajeroMaquina" source="Tren en B" target="T13-sentarPasajeroMaquina">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="517" y="241" curvePoint="false"/>
+<arcpath id="001" x="946" y="438" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en B to T2-salidaB" source="Tren en B" target="T2-salidaB">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="518" y="235" curvePoint="false"/>
+<arcpath id="001" x="592" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Tren en B to T8-moverGenteA" source="Tren en B" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="491" y="243" curvePoint="false"/>
+<arcpath id="001" x="275" y="404" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en C to T11-moverGenteD" source="Tren en C" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="844" y="246" curvePoint="false"/>
+<arcpath id="001" x="1094" y="409" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en C to T12-sentarPasajeroVagon" source="Tren en C" target="T12-sentarPasajeroVagon">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="818" y="244" curvePoint="false"/>
+<arcpath id="001" x="425" y="432" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en C to T13-sentarPasajeroMaquina" source="Tren en C" target="T13-sentarPasajeroMaquina">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="839" y="250" curvePoint="false"/>
+<arcpath id="001" x="956" y="432" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en C to T4-salidaC" source="Tren en C" target="T4-salidaC">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="846" y="238" curvePoint="false"/>
+<arcpath id="001" x="903" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Tren en C to T8-moverGenteA" source="Tren en C" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="817" y="242" curvePoint="false"/>
+<arcpath id="001" x="286" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en C to T9-moverGenteB" source="Tren en C" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="819" y="246" curvePoint="false"/>
+<arcpath id="001" x="566" y="411" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en D to T10-moverGenteC" source="Tren en D" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1144" y="245" curvePoint="false"/>
+<arcpath id="001" x="825" y="417" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en D to T12-sentarPasajeroVagon" source="Tren en D" target="T12-sentarPasajeroVagon">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1143" y="242" curvePoint="false"/>
+<arcpath id="001" x="425" y="432" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en D to T13-sentarPasajeroMaquina" source="Tren en D" target="T13-sentarPasajeroMaquina">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1147" y="249" curvePoint="false"/>
+<arcpath id="001" x="966" y="433" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en D to T6-salidaD" source="Tren en D" target="T6-salidaD">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1172" y="238" curvePoint="false"/>
+<arcpath id="001" x="1243" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Tren en D to T8-moverGenteA" source="Tren en D" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1143" y="241" curvePoint="false"/>
+<arcpath id="001" x="286" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Tren en D to T9-moverGenteB" source="Tren en D" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1143" y="242" curvePoint="false"/>
+<arcpath id="001" x="575" y="416" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje AB to T10-moverGenteC" source="Viaje AB" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="359" y="242" curvePoint="false"/>
+<arcpath id="001" x="795" y="417" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje AB to T11-moverGenteD" source="Viaje AB" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="360" y="240" curvePoint="false"/>
+<arcpath id="001" x="1087" y="415" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje AB to T1-arriboB" source="Viaje AB" target="T1-arriboB">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="360" y="237" curvePoint="false"/>
+<arcpath id="001" x="410" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Viaje AB to T8-moverGenteA" source="Viaje AB" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="339" y="250" curvePoint="false"/>
+<arcpath id="001" x="265" y="404" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje AB to T9-moverGenteB" source="Viaje AB" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="357" y="246" curvePoint="false"/>
+<arcpath id="001" x="552" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje BC to T10-moverGenteC" source="Viaje BC" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="685" y="248" curvePoint="false"/>
+<arcpath id="001" x="809" y="411" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje BC to T11-moverGenteD" source="Viaje BC" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="690" y="242" curvePoint="false"/>
+<arcpath id="001" x="1087" y="415" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje BC to T3-arriboC" source="Viaje BC" target="T3-arriboC">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="691" y="236" curvePoint="false"/>
+<arcpath id="001" x="755" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Viaje BC to T8-moverGenteA" source="Viaje BC" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="662" y="242" curvePoint="false"/>
+<arcpath id="001" x="286" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje BC to T9-moverGenteB" source="Viaje BC" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="667" y="249" curvePoint="false"/>
+<arcpath id="001" x="559" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje CD to T10-moverGenteC" source="Viaje CD" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="973" y="251" curvePoint="false"/>
+<arcpath id="001" x="816" y="412" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje CD to T11-moverGenteD" source="Viaje CD" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="992" y="253" curvePoint="false"/>
+<arcpath id="001" x="1101" y="409" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje CD to T5-arriboD" source="Viaje CD" target="T5-arriboD">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="998" y="240" curvePoint="false"/>
+<arcpath id="001" x="1059" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Viaje CD to T8-moverGenteA" source="Viaje CD" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="968" y="244" curvePoint="false"/>
+<arcpath id="001" x="286" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje CD to T9-moverGenteB" source="Viaje CD" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="969" y="247" curvePoint="false"/>
+<arcpath id="001" x="575" y="416" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje DA to T10-moverGenteC" source="Viaje DA" target="T10-moverGenteC">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1326" y="246" curvePoint="false"/>
+<arcpath id="001" x="825" y="417" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje DA to T11-moverGenteD" source="Viaje DA" target="T11-moverGenteD">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1328" y="250" curvePoint="false"/>
+<arcpath id="001" x="1108" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje DA to T7-arriboA" source="Viaje DA" target="T7-arriboA">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="1340" y="226" curvePoint="false"/>
+<arcpath id="001" x="1339" y="34" curvePoint="false"/>
+<arcpath id="002" x="123" y="34" curvePoint="false"/>
+<arcpath id="003" x="117" y="222" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Viaje DA to T8-moverGenteA" source="Viaje DA" target="T8-moverGenteA">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1325" y="244" curvePoint="false"/>
+<arcpath id="001" x="286" y="410" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+<arc id="Viaje DA to T9-moverGenteB" source="Viaje DA" target="T9-moverGenteB">
+<graphics/>
+<inscription>
+<value/>
+<graphics/>
+</inscription>
+<tagged>
+<value/>
+</tagged>
+<arcpath id="000" x="1326" y="245" curvePoint="false"/>
+<arcpath id="001" x="575" y="416" curvePoint="false"/>
+<type value="inhibitor"/>
+</arc>
+</net>
+</pnml>

@@ -16,11 +16,10 @@ import java.util.concurrent.Semaphore;
     private Semaphore semaphore;
 
     private Monitor(){
-        rdp = new RdP();
-
-        politica = new Politica();
+        politica = new PoliticaRandom();
         semaphore = new Semaphore(1,true);
     }
+
     public static Monitor getInstance(){return instance;}
 
     /**
@@ -101,12 +100,16 @@ import java.util.concurrent.Semaphore;
      * @param path ruta al archivo .xls
      */
     public void setRdP(String path){
-        rdp.setRdp(path);
+        try {
+            semaphore.acquire();
+        }catch(Exception e){e.printStackTrace();}
+        rdp = new RdP(path);
         int ct = rdp.cantidadDeTransiciones();//inicio el vector de variables condicion
         transiciones= new Transicion[ct];
         for(int i=0;i<ct;i++){ //inicializo las variables condicion
             transiciones[i]=new Transicion();
         }
+        semaphore.release();
     }
 
     public int[][] getM(){
@@ -117,4 +120,18 @@ import java.util.concurrent.Semaphore;
         semaphore.release();
         return m;
     }
+
+    /**
+     * permite fijar una politica por prioridades especifica.
+     * Por defecto, la politica es de eleccion Aleatoria
+     * @param politica
+     */
+    public void setPolitica(Politica politica){
+        try {
+            semaphore.acquire();
+        }catch(Exception e){e.printStackTrace();}
+        this.politica=politica;
+        semaphore.release();
+    }
+
 }
