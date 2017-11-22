@@ -47,7 +47,7 @@ import java.util.concurrent.Semaphore;
             try {
                 semaphore.release();
                 transiciones[transicion].delay(resultado);
-            }catch(InterruptedException e){}
+            }catch(InterruptedException e){return;}
         }
 
     }
